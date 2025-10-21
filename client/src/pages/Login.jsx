@@ -51,7 +51,7 @@ const Login = () => {
                 marginTop: "1rem",
               }}
 
-              onsubmit={handlelogin}
+              onSubmit={handlelogin}
             >
               <TextField
                 required
@@ -101,7 +101,7 @@ const Login = () => {
                 width: "100%",
                 marginTop: "1rem",
               }}
-               onsubmit={handlesignup}
+               onSubmit={handlesignup}
             >
               <Stack position={"relative"} width={"10rem"} margin={"auto"}>
                 <Avatar
