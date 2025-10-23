@@ -1,16 +1,13 @@
-import React, { memo } from "react";
 import {
   Avatar,
   Button,
   Dialog,
   DialogTitle,
-  InputAdornment,
-  List,
   ListItem,
   Stack,
-  TextField,
-  Typography,
+  Typography
 } from "@mui/material";
+import { memo } from "react";
 import { sampleNotifications } from "../constants/sampleData";
 
 const Notifications = () => {

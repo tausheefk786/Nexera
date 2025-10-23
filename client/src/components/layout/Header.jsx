@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Suspense, lazy, useState } from "react";
-import { orange } from "../../constants/color";
+import { orange, grayColor } from "../../constants/color";
 import {
   Add as AddIcon,
   Menu as MenuIcon,
@@ -20,7 +20,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import LayoutLoader from "./Loaders";
 
-// Lazy loading components for better performance
 const SearchDialog = lazy(() => import("../../specific/Search"));
 const NotificationDialog = lazy(() => import("../../specific/Notifications"));
 const NewGroupDialog = lazy(() => import("../../specific/NewGroup"));
@@ -28,13 +27,11 @@ const NewGroupDialog = lazy(() => import("../../specific/NewGroup"));
 const Header = () => {
   const navigate = useNavigate();
 
-  // State management for UI toggles
   const [isMobile, setIsMobile] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
   const [isNewGroup, setIsNewGroup] = useState(false);
   const [isNotification, setIsNotification] = useState(false);
 
-  // Event handlers
   const handleMobile = () => {
     setIsMobile((prev) => !prev);
   };
