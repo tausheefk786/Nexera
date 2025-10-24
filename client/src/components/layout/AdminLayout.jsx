@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Grid from "@mui/material" // ✅ Correct import
+import Grid from "@mui/material/Grid" // ✅ Correct import
 import {
   Box,
   Drawer,

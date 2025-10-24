@@ -13,7 +13,10 @@ import {
   Person as PersonIcon,
 } from "@mui/icons-material";
 import moment from "moment";
-import Grid from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { DoughnutChart, LineChart } from "../../specific/Charts";
+import { black } from "../../constants/color";
+
 
 const Dashboard = () => {
   // Appbar Section
@@ -82,9 +85,9 @@ const Dashboard = () => {
             <Typography variant="h4" margin={"2rem 0"}>
               Last Messages
             </Typography>
-            {"Chat"}
+            <LineChart/>
           </Paper>
-
+      
           <Paper
             elevation={3}
             sx={{
@@ -99,7 +102,7 @@ const Dashboard = () => {
               height: "25rem",
             }}
           >
-            {"Donut chart"}
+            <DoughnutChart/>
             <Stack
               position={"absolute"}
               direction={"row"}
@@ -137,7 +140,7 @@ const Widget = ({ title, value, Icon }) => (
         sx={{
           color: "rgba(0,0,0,0.7)",
           borderRadius: "50%",
-          border: `5px solid ${matBlack}`,
+          border: `5px solid ${black}`,
           width: "5rem",
           height: "5rem",
           display: "flex",
