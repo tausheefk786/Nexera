@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const fileFormat = (url = "") => {
   const fileExt = url.split(".").pop();
 

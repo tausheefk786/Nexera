@@ -24,6 +24,8 @@ ChartJS.register(
 );
 
 import moment from "moment";
+import { aquamelime, black } from "../constants/color";
+import { purple } from "@mui/material/colors";
 
 const labels = getLast7Days();
 
@@ -61,7 +63,7 @@ const LineChart = () => {
       {
         data: [1, 2, 34],
         label: "Revenue",
-        fill: false,
+        fill: true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)",
       },
@@ -71,8 +73,21 @@ const LineChart = () => {
   return <Line data={data} options={LineChartOptions} />;
 };
 
-const DoughnutChart = () => {
-  return <div>Charts</div>;
+const DoughnutChart = ({value =[],labels=[]}) => {
+    const data = {
+    labels,
+    datasets: [
+      {
+        data: value,
+        label: "Total Chats vs Group Chats",
+        fill: true,
+        backgroundColor: [aquamelime ,purple],
+        borderColor: [black ,purple],
+      },
+    ],
+  };
+
+  return <DoughnutChart data = {data} />;
 };
 
 export { LineChart, DoughnutChart };

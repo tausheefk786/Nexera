@@ -102,7 +102,9 @@ const Dashboard = () => {
               height: "25rem",
             }}
           >
-            <DoughnutChart/>
+            <DoughnutChart 
+            labels={["Single Chats" , "Group Chats"]}
+            value={[23,66]}/>
             <Stack
               position={"absolute"}
               direction={"row"}
