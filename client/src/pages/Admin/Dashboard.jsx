@@ -6,17 +6,16 @@ import {
   CurveButton,
 } from "../../components/styles/Styledcomponents";
 import {
-  AdminPanelSettings as AdminPanelSettingsIcon,
   Group as GroupIcon,
   Message as MessageIcon,
   Notifications as NotificationsIcon,
   Person as PersonIcon,
+  AdminPanelSettings as AdminPanelSettingsIcon, // ✅ Added import
 } from "@mui/icons-material";
 import moment from "moment";
 import Grid from "@mui/material/Grid";
 import { DoughnutChart, LineChart } from "../../specific/Charts";
 import { black } from "../../constants/color";
-
 
 const Dashboard = () => {
   // Appbar Section
@@ -34,10 +33,7 @@ const Dashboard = () => {
         <Box flexGrow={1} />
 
         <Typography
-          display={{
-            xs: "none",
-            lg: "block",
-          }}
+          display={{ xs: "none", lg: "block" }}
           color={"rgba(0,0,0,0.7)"}
           textAlign={"center"}
         >
@@ -52,10 +48,7 @@ const Dashboard = () => {
   // Widgets Section
   const WidgetsSection = (
     <Stack
-      direction={{
-        xs: "column",
-        sm: "row",
-      }}
+      direction={{ xs: "column", sm: "row" }}
       spacing="2rem"
       justifyContent="space-between"
       alignItems={"center"}
@@ -85,9 +78,9 @@ const Dashboard = () => {
             <Typography variant="h4" margin={"2rem 0"}>
               Last Messages
             </Typography>
-            <LineChart/>
+            <LineChart />
           </Paper>
-      
+
           <Paper
             elevation={3}
             sx={{
@@ -102,9 +95,10 @@ const Dashboard = () => {
               height: "25rem",
             }}
           >
-            <DoughnutChart 
-            labels={["Single Chats" , "Group Chats"]}
-            value={[23,66]}/>
+            <DoughnutChart
+              labels={["Single Chats", "Group Chats"]}
+              value={[23, 66]}
+            />
             <Stack
               position={"absolute"}
               direction={"row"}
@@ -125,7 +119,7 @@ const Dashboard = () => {
   );
 };
 
-// Widget component
+// ✅ Widget Component
 const Widget = ({ title, value, Icon }) => (
   <Paper
     elevation={3}
