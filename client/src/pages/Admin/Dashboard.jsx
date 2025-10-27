@@ -65,7 +65,8 @@ const Dashboard = () => {
       <Container component={"main"}>
         {Appbar}
 
-        <Stack direction={"row"} spacing={"2rem"} flexWrap={"wrap"}>
+        <Stack direction={"row"} spacing={"2rem"} flexWrap={"wrap"} justifyContent = {"center"}
+>
           <Paper
             elevation={3}
             sx={{
