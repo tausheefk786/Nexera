@@ -1,58 +1,91 @@
 import React from "react";
 import AdminLayout from "../../components/layout/AdminLayout";
-import { Container, Box, Paper, Stack, Typography } from "@mui/material";
 import {
-  SearchField,
-  CurveButton,
-} from "../../components/styles/Styledcomponents";
+  Container,
+  Box,
+  Paper,
+  Stack,
+  Typography,
+  TextField,
+  Button,
+} from "@mui/material";
 import {
   Group as GroupIcon,
   Message as MessageIcon,
   Notifications as NotificationsIcon,
   Person as PersonIcon,
-  AdminPanelSettings as AdminPanelSettingsIcon, // ✅ Added import
+  AdminPanelSettings as AdminPanelSettingsIcon,
+  Search as SearchIcon,
 } from "@mui/icons-material";
 import moment from "moment";
-import Grid from "@mui/material/Grid";
 import { DoughnutChart, LineChart } from "../../specific/Charts";
-import { black } from "../../constants/color";
 
 const Dashboard = () => {
-  // Appbar Section
+  // ✅ Appbar Section
   const Appbar = (
     <Paper
-      elevation={3}
-      sx={{ padding: "2rem", margin: "2rem 0", borderRadius: "1rem" }}
+      elevation={2}
+      sx={{
+        padding: "1.5rem 2rem",
+        margin: "1.5rem 0",
+        borderRadius: "1rem",
+        display: "flex",
+        alignItems: "center",
+        gap: "1rem",
+      }}
     >
-      <Stack direction={"row"} alignItems={"center"} spacing={"1rem"}>
-        <AdminPanelSettingsIcon sx={{ fontSize: "3rem" }} />
+      <AdminPanelSettingsIcon sx={{ fontSize: "2.8rem" }} />
 
-        <SearchField placeholder="Search..." />
-        <CurveButton>Search</CurveButton>
+      <TextField
+        placeholder="Search..."
+        variant="outlined"
+        size="small"
+        sx={{
+          flex: 1,
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "30px",
+            backgroundColor: "#f7f7f7",
+            "& fieldset": { border: "none" },
+          },
+        }}
+      />
 
-        <Box flexGrow={1} />
+      <Button
+        variant="contained"
+        endIcon={<SearchIcon />}
+        sx={{
+          backgroundColor: "#000",
+          color: "#fff",
+          borderRadius: "30px",
+          textTransform: "none",
+          "&:hover": { backgroundColor: "#333" },
+        }}
+      >
+        Search
+      </Button>
 
-        <Typography
-          display={{ xs: "none", lg: "block" }}
-          color={"rgba(0,0,0,0.7)"}
-          textAlign={"center"}
-        >
-          {moment().format("MMMM Do YYYY")}
-        </Typography>
+      <Typography
+        display={{ xs: "none", lg: "block" }}
+        color={"rgba(0,0,0,0.7)"}
+        textAlign={"center"}
+        sx={{ ml: "auto" }}
+      >
+        {moment().format("dddd, MMMM Do")}
+      </Typography>
 
-        <NotificationsIcon />
-      </Stack>
+      <NotificationsIcon />
     </Paper>
   );
 
-  // Widgets Section
+  // ✅ Widgets Section
   const WidgetsSection = (
     <Stack
       direction={{ xs: "column", sm: "row" }}
       spacing="2rem"
-      justifyContent="space-between"
+      justifyContent="space-evenly"
       alignItems={"center"}
-      margin={"2rem 0"}
+      marginTop={"2rem"}
+      flexWrap="wrap"
     >
       <Widget title={"Users"} value={34} Icon={<PersonIcon />} />
       <Widget title={"Chats"} value={3} Icon={<GroupIcon />} />
@@ -62,26 +95,46 @@ const Dashboard = () => {
 
   return (
     <AdminLayout>
-      <Container component={"main"}>
+      <Container component={"main"} sx={{ paddingBottom: "3rem" }}>
         {Appbar}
 
-        <Stack direction={"row"} spacing={"2rem"} flexWrap={"wrap"} justifyContent = {"center"}
->
+        {/* ✅ Charts Section */}
+        <Stack
+          direction={{ xs: "column", lg: "row" }}
+          spacing={"2rem"}
+          justifyContent="space-between"
+          alignItems="stretch"
+          flexWrap="wrap"
+          sx={{ marginTop: "2rem" }}
+        >
+          {/* Line Chart */}
           <Paper
             elevation={3}
             sx={{
-              padding: "2rem 3.5rem",
+              padding: "2rem 2.5rem",
               borderRadius: "1rem",
-              width: "100%",
-              maxWidth: "45rem",
+              flex: 2,
+              minWidth: "300px",
+              height: "25rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
             }}
           >
-            <Typography variant="h4" margin={"2rem 0"}>
+            <Typography
+              variant="h5"
+              fontWeight="bold"
+              marginBottom={"1rem"}
+              color="rgba(0,0,0,0.8)"
+            >
               Last Messages
             </Typography>
-            <LineChart />
+            <Box sx={{ flex: 1 }}>
+              <LineChart />
+            </Box>
           </Paper>
 
+          {/* Doughnut Chart */}
           <Paper
             elevation={3}
             sx={{
@@ -91,8 +144,8 @@ const Dashboard = () => {
               justifyContent: "center",
               alignItems: "center",
               position: "relative",
-              width: { xs: "100%", sm: "50%" },
-              maxWidth: "25rem",
+              flex: 1,
+              minWidth: "250px",
               height: "25rem",
             }}
           >
@@ -123,34 +176,38 @@ const Dashboard = () => {
 // ✅ Widget Component
 const Widget = ({ title, value, Icon }) => (
   <Paper
-    elevation={3}
+    elevation={2}
     sx={{
-      padding: "1.5rem 3rem",
+      padding: "1.5rem 2rem",
       borderRadius: "1rem",
       width: "100%",
-      maxWidth: "20rem",
+      maxWidth: "18rem",
       textAlign: "center",
+      backgroundColor: "#fff",
     }}
   >
-    <Stack alignItems={"center"} spacing={"1rem"}>
-      <Typography
+    <Stack alignItems={"center"} spacing={"0.8rem"}>
+      <Box
         sx={{
-          color: "rgba(0,0,0,0.7)",
+          border: "4px solid rgba(0,0,0,0.8)",
           borderRadius: "50%",
-          border: `5px solid ${black}`,
           width: "5rem",
           height: "5rem",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          fontWeight: "bold",
+          fontSize: "1.2rem",
         }}
       >
         {value}
-      </Typography>
+      </Box>
 
-      <Stack direction="row" alignItems="center" spacing="0.5rem">
+      <Stack direction="row" alignItems="center" spacing="0.4rem">
         {Icon}
-        <Typography variant="body1">{title}</Typography>
+        <Typography variant="body1" color="rgba(0,0,0,0.7)">
+          {title}
+        </Typography>
       </Stack>
     </Stack>
   </Paper>
