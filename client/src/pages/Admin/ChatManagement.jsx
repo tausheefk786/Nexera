@@ -3,10 +3,8 @@ import AdminLayout from '../../components/layout/AdminLayout'
 import Table from '../../components/shared/Table'
 import { transformImage } from '../../lib/features';
 import { dashboardData } from '../../constants/sampleData';
-import { Avatar } from '@mui/material';
-
-
-
+import { Avatar, Stack } from '@mui/material';
+import AvatarCard from "../../components/shared/AvatarCard"
 
 
 const columns = [
@@ -22,7 +20,7 @@ const columns = [
   headerClassName: "table-header",
   width: 150,
   renderCell: (params) => (
-    <Avatar alt={params.row.name} src={params.row.avatar} />
+    <AvatarCard  avatar={params.row.avatar} />
   ),
 },
 {
@@ -57,13 +55,36 @@ const columns = [
   headerName: "Created By",
   headerClassName: "table-header",
   width: 250,
+  renderCell: (params) => (
+  <Stack direction="row" alignItems="center" spacing={"1rem"}>
+    <Avatar alt={params.row.creator.name} src={params.row.creator.avatar} />
+    <span>{params.row.creator.name}</span>
+  </Stack>
+),
 },
 
 ];
 
 const ChatManagement = () => {
   const [rows,setRows] = useState([]);
-  useEffect(() => {}, []);
+  useEffect(() => {
+  
+    setRows(
+    dashboardData.chats.map((i) => ({
+      ...i,
+      id: i._id,
+      avatar: Array.isArray(i.avatar)
+        ? i.avatar.map((img) => transformImage(img, 50))
+        : transformImage(i.avatar, 50),
+      members: i.members.map((i) => transformImage(i.avatar,50)),
+      creator:{
+        name: i.creator.name,
+        avatar: transformImage(i.creator.avatar,50),
+      }
+    }))
+  );
+  
+}, []);
   return (
    <AdminLayout>
      <Table  heading={"All Chats"}  columns= {columns} rows={rows} />

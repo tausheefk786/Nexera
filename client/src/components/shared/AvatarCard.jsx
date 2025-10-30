@@ -1,16 +1,18 @@
-import React from 'react'
+import React from "react";
+import { Stack, Box, Avatar, AvatarGroup } from "@mui/material";
+import { transformImage } from "../../lib/features";
 
-import { Stack,Box,Avatar, AvatarGroup } from '@mui/material';
-import { transformImage } from '../../lib/features';
+const AvatarCard = ({ avatar, max = 4 }) => {
+  // 🧠 Ensure avatar is always an array
+  const avatars = Array.isArray(avatar) ? avatar : [avatar];
 
-const AvatarCard = ({ avatar = [], max = 4 }) => {
   return (
     <Stack direction={"row"} spacing={0.5}>
       <AvatarGroup max={max}>
-        <Box width={"5rem"} height={"3rem"}>
-          {avatar.map((i, index) => (
+        <Box width={"5rem"} height={"3rem"} position="relative">
+          {avatars.map((i, index) => (
             <Avatar
-              key={Math.random() * 100}
+              key={index}
               src={transformImage(i)}
               alt={`Avatar ${index}`}
               sx={{
@@ -28,6 +30,6 @@ const AvatarCard = ({ avatar = [], max = 4 }) => {
       </AvatarGroup>
     </Stack>
   );
-}
+};
 
-export default AvatarCard
+export default AvatarCard;
