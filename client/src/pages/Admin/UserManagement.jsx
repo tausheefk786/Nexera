@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AdminLayout from '../../components/layout/AdminLayout'
 import Table from '../../components/shared/Table'
+import { transformImage } from '../../lib/features';
+import { dashboardData } from '../../constants/sampleData';
+import { Avatar } from '@mui/material';
+
 
 
 
@@ -11,17 +15,47 @@ const columns = [
   headerClassName: "table-header",
   width: 200,
 },
- {
+{
   field: "avatar",
-  headerName: "AVATAR",
+  headerName: "Avatar",
   headerClassName: "table-header",
   width: 150,
+  renderCell: (params) => (
+    <Avatar alt={params.row.name} src={params.row.avatar} />
+  ),
+},
+{
+  field: "name",
+  headerName: "Name",
+  headerClassName: "table-header",
+  width: 200,
+},
+{
+  field: "username",
+  headerName: "Username",
+  headerClassName: "table-header",
+  width: 200,
+},
+{
+  field: "groups",
+  headerName: "Groups",
+  headerClassName: "table-header",
+  width: 200,
 },
 
 ];
 
 const UserManagement = () => {
-  const [rows,setrows] = useState([]);
+  const [rows,setRows] = useState([]);
+  useEffect(() => {
+  setRows(
+    dashboardData.users.map((i) => ({
+      ...i,
+      id: i._id,
+      avatar: transformImage(i.avatar, 50),
+    }))
+  );
+}, []);
   return (
    <AdminLayout>
      <Table  heading={"All Users"}  columns= {columns} rows={rows} />
@@ -29,4 +63,4 @@ const UserManagement = () => {
   )
 }
 
-export default UserManagement
+export default UserManagement;

@@ -48,8 +48,8 @@ export const adminTabs = [
     icon: <MessageIcon />,
   },
   {
-    name: "Groups",
-    path: "/admin/groups",
+    name: "Chats",
+    path: "/admin/chats",
     icon: <GroupIcon />,
   },
 ];
