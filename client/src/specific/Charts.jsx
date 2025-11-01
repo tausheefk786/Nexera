@@ -7,6 +7,7 @@ import {
   LinearScale,
   PointElement,
   Tooltip,
+  Filler,
   Legend,
 } from "chart.js";
 import { Line, Doughnut } from "react-chartjs-2";
@@ -19,35 +20,49 @@ ChartJS.register(
   LinearScale,
   PointElement,
   Tooltip,
+  Filler,
   Legend
 );
 
+// ✅ Line Chart (same as image)
 export const LineChart = () => {
   const data = {
-    labels: ["Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue"],
+    labels: ["Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"],
     datasets: [
       {
         label: "Messages",
-        data: [12, 19, 3, 5, 2, 3, 10],
-        fill: false,
-        borderColor: "#36A2EB",
-        tension: 0.4,
-        pointBackgroundColor: "#36A2EB",
+        data: [20, 55, 35, 68, 40, 15, 0],
+        fill: true,
+        backgroundColor: "rgba(166, 109, 241, 0.3)", // light purple area
+        borderColor: "#8b47df", // purple border
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 0,
       },
     ],
   };
 
   const options = {
-    responsive: true,
-    maintainAspectRatio: false,
     plugins: {
       legend: { display: false },
-      tooltip: { backgroundColor: "#333", titleColor: "#fff" },
+      tooltip: {
+        backgroundColor: "#000",
+        titleColor: "#fff",
+        bodyColor: "#fff",
+      },
     },
     scales: {
-      x: { grid: { display: false } },
-      y: { grid: { color: "rgba(200,200,200,0.2)" } },
+      x: {
+        grid: { display: false },
+        ticks: { color: "rgba(0,0,0,0.6)" },
+      },
+      y: {
+        grid: { color: "rgba(0,0,0,0.05)" },
+        ticks: { color: "rgba(0,0,0,0.6)" },
+        beginAtZero: true,
+      },
     },
+    maintainAspectRatio: false,
   };
 
   return (
@@ -57,27 +72,35 @@ export const LineChart = () => {
   );
 };
 
-export const DoughnutChart = ({ labels, value }) => {
+// ✅ Doughnut Chart (like in your screenshot)
+export const DoughnutChart = ({ labels = ["Group Chats", "Single Chats"], value = [66, 34] }) => {
   const data = {
     labels,
     datasets: [
       {
         data: value,
-        backgroundColor: ["#4CAF50", "#FF9800"],
-        hoverBackgroundColor: ["#45A049", "#FB8C00"],
-        borderWidth: 0,
+        backgroundColor: ["rgba(153,102,255,0.4)", "rgba(255,99,132,0.4)"], // purple & pink
+        borderColor: ["#9966ff", "#ff6384"], // darker outlines
+        borderWidth: 2,
+        cutout: "80%", // creates the donut ring
+        spacing: 10, // small gap between arcs
       },
     ],
   };
 
   const options = {
-    cutout: "75%",
     plugins: {
       legend: {
         position: "bottom",
         labels: { color: "#333", font: { size: 13 } },
       },
+      tooltip: {
+        backgroundColor: "#000",
+        titleColor: "#fff",
+        bodyColor: "#fff",
+      },
     },
+    maintainAspectRatio: false,
   };
 
   return (

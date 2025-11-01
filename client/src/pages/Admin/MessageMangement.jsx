@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../components/layout/AdminLayout";
 import Table from "../../components/shared/Table";
-import { Stack,Avatar,Box } from "@mui/material";
+import { Stack,Avatar,Box} from "@mui/material";
 import {dashboardData} from "../../constants/sampleData";
 import RenderAttachment from "../../components/shared/RenderAttachment"
 import { fileFormat } from "../../lib/features";
