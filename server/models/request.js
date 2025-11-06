@@ -29,4 +29,4 @@ const schema = new Schema({
 },
 {timestamps: true})
 
-export const User = models.User || model("User",schema);
+export const Request = models.Request || model("Request",schema);
