@@ -1,32 +1,24 @@
-import { Schema,model,models } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
+const schema = new Schema(
+  {
+    Status: {
+      type: String,
+      default: "pending",
+      enum: ["pending", "accepted", "rejected"],
+    },
+    sender: {
+      type: Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    receiver: {
+      type: Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-const schema = new Schema({
-    name:{
-        type: String,
-        required: true,
-    },
-    username: {
-        type:String,
-        required: true,
-        unique: true,
-    },
-    password:{
-        type: String,
-        required: true,
-        select: false,  
-    },
-    avatar: {
-       public_id: {
-        type: String,
-        required: true,
-       } ,
-        url: {
-        type: String,
-        required: true,
-       } ,
-    }
-},
-{timestamps: true})
-
-export const Request = models.Request || model("Request",schema);
+export const Request = models.Request || model("Request", schema);
