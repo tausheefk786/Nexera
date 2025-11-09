@@ -1,13 +1,15 @@
+import { User } from "../models/user.js";
+
 const newUser = async (req,res)=>{
 
     const avatar = {
         public_id : "acqee",
         url: "wvwv",
     };
-    await User.create({
-        name: "madar",
-        username: "chod",
-        password: "bhadwa",
+    await User.create ({
+        name: "madarjuhv",
+        username: "chodihv",
+        password: "bhadwaijhv",
         avatar,
     })
     res.status(201).json({message: "user created baby"})

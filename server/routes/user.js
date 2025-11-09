@@ -6,6 +6,4 @@ app.post("/new",login);
 app.post("/login",newUser);
 
 
-
-
 export default app;
