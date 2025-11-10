@@ -13,6 +13,10 @@ connectDB(process.env.MONGO_URI);
 const app = express();
 
 
+//using middleware
+app.use(express.json());
+
+
 app.use("/user",userRoute);
 
 app.get("/",(req,res)=>{
