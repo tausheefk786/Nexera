@@ -16,7 +16,7 @@ const newUser = async (req,res)=>{
         password,
         avatar,
      })
-    res.status(201).json({message: "user created baby"})
+    res.status(201).json({message: "user created successfully baby"})
 }
 const login = (req,res)=>{
     res.send("hiii baby")
