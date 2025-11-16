@@ -1,6 +1,19 @@
 import mongoose from "mongoose";
+import { User } from "../models/user.js";
 
-export const connectDB = async (uri) => {
+
+import { jwt } from "jsonwebtoken";
+
+
+const cookieOptions = 
+   {
+    maxAge: 15 * 24 * 60 * 60 * 1000,
+    sameSite : "none",
+    httpOnly: true,
+    secure: true,
+  }
+
+const connectDB = async (uri) => {
   try {
     await mongoose.connect(uri, {
       dbName: "Nexera",
@@ -19,3 +32,18 @@ export const connectDB = async (uri) => {
     process.exit(1);
   }
 };
+
+const sendToken = (res, user ,code ,message)=>{
+  const token = jwt.sign({_id: user._id},process.env.JWT_SECRET);
+
+return res
+  .status(code)
+  .cookie("nexera-token", token,cookieOptions)
+  .json({
+    success: true,
+    message,
+    
+  });
+};
+
+export {connectDB,sendToken}

@@ -1,4 +1,5 @@
 import { User } from "../models/user.js";
+import { sendToken } from "../utils/features.js";
 
 const newUser = async (req,res)=>{
 
@@ -11,14 +12,15 @@ const { name, username, password, bio } = req.body && Object.keys(req.body).leng
         public_id : "acqee",
         url: "wvwv",
     };
-    await User.create ({
+    const user = await User.create ({
         name,
         bio,
         username,
         password,
         avatar,
      })
-    res.status(201).json({message: "user created successfully baby"})
+   
+    sendToken(res,user,201,"User created");
 }
 const login = (req,res)=>{
     res.send("hiii baby")
