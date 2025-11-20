@@ -20,7 +20,7 @@ app.use(express.json());
 app.use("/user",userRoute);
 
 app.get("/",(req,res)=>{
-    res.send("hello world lund mera")
+    res.send("hello world")
 })
 
 app.listen(port, ()=>{

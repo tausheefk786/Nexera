@@ -17,8 +17,8 @@ const connectDB = async (uri) => {
       dbName: "Nexera",
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      tls: true, // ✅ replaces ssl
-      tlsAllowInvalidCertificates: false, // ✅ replaces sslValidate
+      tls: true, //  replaces ssl
+      tlsAllowInvalidCertificates: false, //  replaces sslValidate
       retryWrites: true,
       w: "majority",
       appName: "Cluster0",
